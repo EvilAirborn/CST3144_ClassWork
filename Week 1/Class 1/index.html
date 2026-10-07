@@ -1,0 +1,27 @@
+<html lang="en">
+
+    <head>
+        <title>Hello World</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <p>Name: {{ name }}<br>
+            Program: {{ prog }}<br>
+            Hobbies: {{ hobbies }}</p>
+        </div>
+        <script>
+            var app = new Vue ({
+                el: '#app',
+                data: {
+                    name: 'Arafat',
+                    prog: 'IT',
+                    hobbies: 'No Hobby',
+                }
+            })
+            app.hobbies="Sleeping"
+        </script>
+    </body>
+    
+</html>

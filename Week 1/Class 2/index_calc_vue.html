@@ -1,0 +1,49 @@
+<html lang="en">
+
+    <head>
+        <title>Calculator VUE</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="App">
+            <h1>Calculator VUE</h1>
+            <input type="number" v-model="inputOne" />
+            <input type="number" v-model="inputTwo" />
+            <button @click="addition">Addition</button>
+            <button @click="substraction">Substraction</button>
+            <button @click="multiplication">Multiplication</button>
+            <button @click="division">Division</button>
+            <ul id="taskList"></ul>
+        </div>
+        <script>
+            let app = new Vue ({
+                el: '#App',
+                data: { newTask: ''},
+                methods: {
+                    addition: function() {
+                        let newItem = document.createElement('li');
+                        newItem.innerText = Number(app.inputOne)+ Number(app.inputTwo);
+                        document.getElementById('taskList').appendChild(newItem);
+                    },
+                    substraction: function() {
+                        let newItem = document.createElement('li');
+                        newItem.innerText = Number(app.inputOne)- Number(app.inputTwo);
+                        document.getElementById('taskList').appendChild(newItem);
+                    },
+                    multiplication: function() {
+                        let newItem = document.createElement('li');
+                        newItem.innerText = Number(app.inputOne)* Number(app.inputTwo);
+                        document.getElementById('taskList').appendChild(newItem);
+                    },
+                    division: function() {
+                        let newItem = document.createElement('li');
+                        newItem.innerText = Number(app.inputOne)/ Number(app.inputTwo);
+                        document.getElementById('taskList').appendChild(newItem);
+                    },
+                }
+            })
+        </script>
+    </body>
+    
+</html>

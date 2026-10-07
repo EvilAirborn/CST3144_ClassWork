@@ -1,0 +1,31 @@
+<html lang="en">
+
+    <head>
+        <title>TODO List</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="App">
+            <h1>My TODO</h1>
+            <input type="text" v-model="newTask" id=""newTask />
+            <button id="addButton" v-on:click="addItem">Add</button>
+            <ul id="taskList"></ul>
+        </div>
+        <script>
+            let app = new Vue ({
+                el: '#App',
+                data: { newTask: ''},
+                methods: {
+                    addItem: function() {
+                        let newItem = document.createElement('li');
+                        newItem.innerText = app.newTask;
+                        document.getElementById('taskList').appendChild(newItem);
+                        app.newTask = '';
+                    }
+                }
+            })
+        </script>
+    </body>
+    
+</html>

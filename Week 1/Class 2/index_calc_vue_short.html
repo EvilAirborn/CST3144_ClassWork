@@ -1,0 +1,47 @@
+<html lang="en">
+
+    <head>
+        <title>Calculator VUE</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="App">
+            <h1>Calculator VUE</h1>
+            
+            <input type="number" v-model.number="inputOne" />
+            <input type="number" v-model.number="inputTwo" />
+
+            <button @click="addition">Addition</button>
+            <button @click="substraction">Substraction</button>
+            <button @click="multiplication">Multiplication</button>
+            <button @click="division">Division</button>
+            <h3> Result = {{result}}</h3>
+        </div>
+        <script>
+            let app = new Vue ({
+                el: '#App',
+                data: { 
+                    result: 0,
+                    inputOne: 0,
+                    inputTwo: 0
+                },
+                methods: {
+                    addition: function() {
+                        this.result = this.inputOne + this.inputTwo;
+                    },
+                    substraction: function() {
+                        this.result = this.inputOne - this.inputTwo;
+                    },
+                    multiplication: function() {
+                        this.result = this.inputOne * this.inputTwo;
+                    },
+                    division: function() {
+                        this.result = this.inputOne / this.inputTwo;
+                    },
+                }
+            })
+        </script>
+    </body>
+    
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Calculation JS</title>
+        <!-- script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script -->
+    </head>
+
+    <body>
+        <h1>Calculator JS</h1>
+        <!-- input type="text" id="newTask"-->
+        <input type="text" id="valueX">
+        <input type="text" id="valueY">
+        <input type="button" value="Addition" id="addButton">
+        <input type="button" value="Substraction" id="minusButton">
+        <input type="button" value="Multiplication" id="multiplyButton">
+        <input type="button" value="Division" id="divButton">
+
+
+        <ul id="taskList"></ul>
+        <script>
+            let taskList = document.getElementById("taskList");
+            <!-- Addition -->
+
+            let addButton = document.getElementById("addButton");
+            addButton.onclick = function() {
+                let taskField1 = document.getElementById("valueX");
+                let taskField2 = document.getElementById("valueY");
+                let taskField = Number(taskField1.value)+ Number(taskField2.value);
+                let taskItem = document.createElement("li");
+                taskItem.innerText = taskField;
+                taskList.appendChild(taskItem);
+                taskField.value = "" ;
+            }
+
+            <!-- Substraction -->
+
+            let minusButton = document.getElementById("minusButton");
+            minusButton.onclick = function() {
+                let taskField1 = document.getElementById("valueX");
+                let taskField2 = document.getElementById("valueY");
+                let taskField = Number(taskField1.value)- Number(taskField2.value);
+                let taskItem = document.createElement("li");
+                taskItem.innerText = taskField;
+                taskList.appendChild(taskItem);
+                taskField.value = "" ;
+            }
+
+            <!-- multiply -->
+
+            let multiplyButton = document.getElementById("multiplyButton");
+            multiplyButton.onclick = function() {
+                let taskField1 = document.getElementById("valueX");
+                let taskField2 = document.getElementById("valueY");
+                let taskField = Number(taskField1.value)* Number(taskField2.value);
+                let taskItem = document.createElement("li");
+                taskItem.innerText = taskField;
+                taskList.appendChild(taskItem);
+                taskField.value = "" ;
+            }
+
+            <!-- division -->
+
+            let divButton = document.getElementById("divButton");
+            divButton.onclick = function() {
+                let taskField1 = document.getElementById("valueX");
+                let taskField2 = document.getElementById("valueY");
+                let taskField = Number(taskField1.value)/ Number(taskField2.value);
+                let taskItem = document.createElement("li");
+                taskItem.innerText = taskField;
+                taskList.appendChild(taskItem);
+                taskField.value = "" ;
+            }
+        </script>
+    </body>
+    
+</html>

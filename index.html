@@ -1,1 +1,163 @@
-<html></html>
+<html lang="en">
+
+    <head>
+        <title>Vue.js Pet Depost</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+        <script src="https://kit.fontawesome.com/d3735cdb42.js" crossorigin="anonymous"></script>
+
+    </head>
+
+    <body>
+        <div id="app">
+            <header>
+                <h1 v-text="sitename"></h1>
+                <button @click="showCheckout">
+                        Checkout: {{cartItemCount}}
+                        <span class="fa-solid fa-cart-shopping"></span>
+                </button>
+            </header>
+            <div>
+                <div v-if="showProduct">
+                    <img v-bind:src="product.image" height="200"><img>
+                    <h2 v-text="product.title"></h2>
+                    <p>SKU: {{product.id}}</p>
+                    <p v-html="product.description"></p>
+                    <p>Price: {{product.price}}</p>
+                    <p>Stock: {{this.product.availableInventory}}</p>
+                    <button v-on:click="addToCart" v-if="canAddToCart">
+                        Add to Cart
+                    </button>
+                    <!-- button disabled="disabled" v-else>
+                        Out Of Stock
+                    </button -->
+                    <h3 v-else>
+                        Out Of Stock
+                    </h3> 
+                </div>
+                <div v-else>
+                    <h2>Checkout Page</h2>
+                    <h3>Added Product IDs</h3>
+                    <p>Product ID: {{cart}}</p>
+                    <div>
+                    <h2>Checkout</h2>
+                    <p>
+                        <strong>First Name:</strong>
+                        <input v-model.trim="order.firstName"/>
+                    </p>
+                    <p>
+                        <strong>Last Name:</strong>
+                        <input v-model.trim="order.lastName"/>
+                    </p>
+                    <p>
+                        <strong>Address:</strong>
+                        <input v-model="order.address"/>
+                    </p>
+                    <p>
+                        <strong>City:</strong>
+                        <input v-model="order.city"/>
+                    </p>
+                    <p>
+                        <strong>Emirate:</strong>
+                        <select v-model="order.emirate">
+                            <option disabled value="">Select emirate</option>
+                            <!-- option v-bind:value="emirate.AD">AD</option>
+                            <option v-bind:value="emirate.DXB">DXB</option>
+                            <option v-bind:value="emirate.RAK">RAK</option>
+                            <option v-bind:value="emirate.FUJ">FUJ</option -->
+
+                            <option v-for="(emirate, key) in emirate" :value="emirate">
+                                {{key}}
+                            </option>
+                            
+                        </select>
+                    </p>
+                    <p>
+                        <strong>Zip Code:</strong> 
+                        <input v-model.number="order.zip"/>
+                    </p>
+                    <p>
+                        <input type="checkbox" v-model="order.gift" v-bind:true-value="order.giftTrue" v-bind:false-value="order.giftFalse"/>
+                        <strong>Ship As Gift?</strong> 
+                    </p>
+                    <p>
+                        <input type="radio" value="Home" v-model="order.method"/>
+                        <label for="Home">Home</label>
+                        <input type="radio" value="Business" v-model="order.method"/>
+                        <label for="Business">Business</label>
+                    </p>
+
+                    <h2>Order Information</h2>
+                    <p>First Name: {{order.firstName}}</p>
+                    <p>Last Name: {{order.lastName}}</p>
+                    <p>Address: {{order.address}}</p>
+                    <p>City: {{order.city}}</p>
+                    <p>Emirate: {{order.emirate}}</p>
+                    <p>Zip: {{order.zip}}</p>
+                    <p>Gift?: {{order.gift}}</p>
+                    <p>Shipment To: {{order.method}}</p>
+                    <button v-on:click="submitForm">Place Order</button>
+                </div>  
+                </div>  
+            </div>
+        </div>
+        <script type="text/javascript">
+            let webstore = new Vue({
+                el: '#app',
+                data: {
+                    sitename: 'Vue.js Pet Depot',
+                    showProduct: true,
+                    product: 
+                    {
+                        id: 1001,
+                        title: "Cat food, 10lb bag",
+                        description: "A 10 pound bag of cat food <em>irresistible</em>",
+                        price: 2000,
+                        image: "image/product-fullsize.png" ,
+                        availableInventory: 5,
+                    },
+                    emirate: {
+                            AD: "Abu Dhabi",
+                            DXB: "Dubai",
+                            RAK: "Ras Al Khaimah",
+                            FUJ: "Al Fujairah",
+                        },
+                    order: {
+                        firstName: "",
+                        lastName: "",
+                        address: "",
+                        city: "",
+                        zip: "",
+                        gift: "",
+                        emirate: "",
+                        giftTrue: "Send as a gift",
+                        giftFalse: "Do not send as a gift",
+                        method: "Home",
+                    },
+                    cart: [],
+                },
+                methods:{
+                    addToCart: function() {
+                        this.cart.push(this.product.id)
+                        this.product.availableInventory -= 1
+                    },
+                    showCheckout() {
+                        this.showProduct = this.showProduct ? false : true;
+                    },
+                    submitForm() {
+                        alert('Order submitted!!!!!')
+                    }
+                },
+                computed:{
+                    cartItemCount: function() {
+                        return this.cart.length || 0;
+                    },
+                    canAddToCart: function() {
+                        // return this.product.availableInventory > this.cartItemCount;
+                        return this.product.availableInventory > 0;
+                    },
+                },
+            });
+        </script>
+    </body>
+    
+</html>

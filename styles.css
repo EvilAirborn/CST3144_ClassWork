@@ -28,6 +28,79 @@ header {
 body {
     background-color: #FFF4E6;
 }
+/* Header */
+.site-header {
+    background: #f9fbf8;
+    padding: 25px 5%;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.site-logo {
+    font-size: 28px;
+    font-weight: 800;
+    color: #142f21;
+    margin: 0;
+}
+
+/* Navigation */
+.nav-links {
+    display: flex;
+    gap: 40px;
+}
+
+.nav-links a {
+    color: #142f21;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.nav-links a:hover {
+    color: #35714d;
+}
+
+/* Shopping bag */
+.bag-button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    color: #142f21;
+    font-size: 17px;
+}
+
+.bag-button:hover,
+.bag-button:active {
+    transform: none;
+    box-shadow: none;
+}
+
+.bag-count {
+    background: #e5f0e5;
+    border-radius: 50%;
+    padding: 4px 10px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .header-content {
+        flex-wrap: wrap;
+    }
+
+    .nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        gap: 25px;
+    }
+}
 /* From Figma Work
  https://www.figma.com/design/S6W2jkrDJuQkF3TfQtLmpR/Franchise---Ecommerce-App--Community-?node-id=1-786&m=dev */
 button {

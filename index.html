@@ -21,12 +21,17 @@
 
     <body>
         <div id="app">
-            <header>
-                <div class="flex-container" style="justify-content: space-between;">
-                    <h1 v-text="sitename"></h1>
-                    <button @click="showCheckout">
-                            Checkout: {{cartItemCount}}
-                            <span class="fa-solid fa-cart-shopping"></span>
+            <header class="site-header">
+                <div class="header-content">
+                    <h1 v-text="sitename" class="site-logo"></h1>
+                    <nav class="nav-links">
+                        <a href="#products" @click="showProduct = true">Shop all</a>
+                        <a href="#promise">Our promise</a>
+                    </nav>
+                    <button class="bag-button" @click="showCheckout">
+                        <span class="fa-solid fa-bag-shopping"></span>
+                        Your bag
+                        <span class="bag-count">{{cartItemCount}}</span>
                     </button>
                 </div>
             </header>

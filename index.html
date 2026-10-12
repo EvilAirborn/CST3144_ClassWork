@@ -32,7 +32,7 @@
             </header>
             <div>
                 <div v-if="showProduct" class="flex-container">
-                    <div v-for="product in sortedProducts" :key="product.id" class="glass flex-item product-box">
+                    <div v-for="product in sortedProducts" :key="product.id" class="flex-item product-box">
                         <img v-bind:src="product.image" height="200">
                         <h2 v-text="product.title" class="product-title"></h2>
                         <p>SKU: {{product.id}}</p>

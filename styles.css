@@ -21,12 +21,68 @@ https://design.dev/tools/flexbox-playground/ */
     border-radius: 10px; */
 }
 
+/* Footer */
+.site-footer {
+    background: #f9fbf8;
+    border-top: 1px solid #dce5dc;
+    padding: 35px 5%;
+    border-radius: 0 0 24px 24px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: auto;
+    gap: 30px;
+}
+
+.site-footer .site-logo {
+    font-size: 17px;
+}
+
+.site-footer .site-logo-icon {
+    width: 25px;
+    height: 25px;
+}
+
+.site-footer .site-brand {
+    gap: 10px;
+}
+
+.site-footer p {
+    color: #637067;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+}
+
 header {
     padding: 20px;
     background-color: #DCEAFF;
 }
 body {
-    background-color: #FFF4E6;
+    background-color: #FCFDFA;
+}
+.site-brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.site-logo-icon {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
 }
 /* Header */
 .site-header {
@@ -101,27 +157,202 @@ body {
         gap: 25px;
     }
 }
+/* Hero Section CSS */
+
+/* Hero Section */
+.hero {
+    display: flex;
+    min-height: 650px;
+    background: #eaf3e9;
+}
+
+.hero-content {
+    width: 50%;
+    padding: 80px 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.hero-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 35px;
+}
+
+.hero h1 {
+    font-size: clamp(48px, 5.5vw, 90px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -3px;
+    color: #142f21;
+    margin-bottom: 35px;
+}
+
+.hero p {
+    font-size: 20px;
+    line-height: 1.8;
+    color: #637067;
+    max-width: 480px;
+    margin-bottom: 35px;
+}
+
+.shop-button {
+    background: #194c34;
+    color: white;
+    padding: 15px 22px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.shop-button:hover {
+    background: #286a48;
+    color: white;
+}
+
+.hero-note {
+    margin-top: 40px;
+    color: #637067;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.hero-note i {
+    color: #194c34;
+    font-size: 20px;
+}
+
+/* Hero Image */
+.hero-image {
+    width: 50%;
+    background: #a7c5a8;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+    }
+
+    .hero-content,
+    .hero-image {
+        width: 100%;
+    }
+
+    .hero-content {
+        padding: 60px 25px;
+    }
+
+    .hero h1 {
+        letter-spacing: -1px;
+    }
+
+    .hero-image {
+        height: 400px;
+    }
+}
+
+/* After Hero Features Section */
+.features {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    padding: 35px 5%;
+    background: #f9fbf8;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.feature-icon {
+    width: 55px;
+    height: 55px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #e5f0e5;
+    color: #194c34;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+}
+
+.feature-item h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #142f21;
+    margin: 0 0 5px;
+}
+
+.feature-item p {
+    font-size: 14px;
+    color: #637067;
+    margin: 0;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .features {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 25px;
+        padding: 30px 25px;
+    }
+}
+
 /* From Figma Work
  https://www.figma.com/design/S6W2jkrDJuQkF3TfQtLmpR/Franchise---Ecommerce-App--Community-?node-id=1-786&m=dev */
-button {
+button, .btns {
     border-radius: 4px;
     border: 1.5px solid #000;
-    background: #82B4FF;
+    background: #194c34;
     box-shadow: 5px 5px 0 #000;
     padding: 10px 20px;
     font-weight: 600;
+    color: #fff;
+    text-decoration: none;
     transition: all 0.2s ease;
+    
     
 }
 
-button:hover {
+button:hover, .btns:hover {
     transform: translate(2px, 2px);
     box-shadow: 3px 3px 0 #000;
 }
 
-button:active {
+button:active, .btns:active {
     transform: translate(5px, 5px);
     box-shadow: none;
+}
+#products {
+    padding-block: 64px;
+    gap: 24px;
+}
+
+@media (max-width: 768px) {
+    #products {
+        padding-block: 32px;
+    }
 }
 .product-box {
     width: 330px;

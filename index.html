@@ -1,7 +1,7 @@
 <html lang="en">
 
     <head>
-        <title>Vue.js Pet Depost</title>
+        <title>Paw Care & Food</title>
         <!-- Vue 2.7.16 CDN-->
         <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
         <script src="https://kit.fontawesome.com/d3735cdb42.js" crossorigin="anonymous"></script>
@@ -15,6 +15,9 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="styles.css">
+
+        <!-- Favocon-->
+        <link rel="icon" type="image/png" href="image/logo-icon.png">
         
 
     </head>
@@ -23,10 +26,13 @@
         <div id="app">
             <header class="site-header">
                 <div class="header-content">
-                    <h1 v-text="sitename" class="site-logo"></h1>
+                    <div class="site-brand">
+                        <img src="image/logo-icon.png" alt="Logo" class="site-logo-icon">
+                        <h1 v-text="sitename" class="site-logo"></h1>
+                    </div>
                     <nav class="nav-links">
                         <a href="#products" @click="showProduct = true">Shop all</a>
-                        <a href="#promise">Our promise</a>
+                        <a href="#features">Our features</a>
                     </nav>
                     <button class="bag-button" @click="showCheckout">
                         <span class="fa-solid fa-bag-shopping"></span>
@@ -35,8 +41,75 @@
                     </button>
                 </div>
             </header>
+
+            <!-- Hero Section Top Part -->
+            <section class="hero" v-if="showProduct">
+
+                <div class="hero-content">
+                    <div class="hero-label">
+                        A LITTLE LOVE IN EVERY BOWL
+                    </div>
+
+                    <h1>Cat food.<br>Happy cats.</h1>
+
+                    <p>
+                        For the little companion who makes your house
+                        a home. Find their next favorite meal,
+                        one delicious bowl at a time.
+                    </p>
+
+                    <a href="#products" class="btns">
+                        Shop Now
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                    <div class="hero-note">
+                        <i class="fa-regular fa-heart"></i>
+                        For cats. And the people who love them.
+                    </div>
+                </div>
+
+                <div class="hero-image">
+                    <img src="image/hero-cat.jpg" alt="Cat with food">
+                </div>
+
+            </section>
+            <!-- Features Section For Hero -->
+            <section class="features" id="features" v-if="showProduct">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <div>
+                        <h3>Everyday goodness</h3>
+                        <p>A happy little mealtime</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
+                    <div>
+                        <h3>Made for your companion</h3>
+                        <p>Because their bowl matters</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-box"></i>
+                    </div>
+                    <div>
+                        <h3>A size for every home</h3>
+                        <p>From 10 lb to 50 lb bags</p>
+                    </div>
+                </div>
+
+            </section>
+
             <div>
-                <div v-if="showProduct" class="flex-container">
+                <div v-if="showProduct" class="flex-container" id="products">
                     <div v-for="product in sortedProducts" :key="product.id" class="flex-item product-box">
                         <img v-bind:src="product.image" height="200">
                         <h2 v-text="product.title" class="product-title"></h2>
@@ -131,12 +204,29 @@
                 </div>  
                 </div>  
             </div>
+
+            <!-- Footer -->
+            <footer class="site-footer">
+                <div class="footer-content">
+
+                    <div class="site-brand">
+                        <img src="image/logo-icon.png" alt="Logo" class="site-logo-icon">
+                        <h1 v-text="sitename" class="site-logo"></h1>
+                    </div>
+
+                    <p>A full bowl. A happy heart.</p>
+
+                    <p>&copy; 2026 {{sitename}}</p>
+
+                </div>
+            </footer>
+
         </div>
         <script type="text/javascript">
             let webstore = new Vue({
                 el: '#app',
                 data: {
-                    sitename: 'Vue.js Pet Depot',
+                    sitename: 'Paw Care & Food',
                     showProduct: true,
                     products: products,
                     emirate: {

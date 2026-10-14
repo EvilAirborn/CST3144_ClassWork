@@ -439,3 +439,51 @@ button:active, .btns:active {
         flex-direction: column;
     }
 }
+/* Checkout Page CSS */
+.cart-summary {
+    width: 90%;
+    margin: 32px auto;
+}
+
+.cart-grid {
+    width: 100%;
+    gap: 24px;
+}
+
+.cart-card .product-title {
+    font-size: 22px;
+    margin-bottom: 16px;
+}
+
+.cart-body {
+    display: flex;
+    gap: 12px;
+}
+
+.cart-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.cart-details small {
+    font-size: 12px;
+    color: #637067;
+}
+
+.cart-card p {
+    margin: 6px 0;
+    font-size: 14px;
+}
+
+.cart-prices {
+    flex: 0 0 110px;
+    text-align: right;
+}
+
+.cart-prices button {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 8px;
+    padding: 8px 6px;
+    font-size: 13px;
+}

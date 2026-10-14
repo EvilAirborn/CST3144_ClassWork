@@ -111,12 +111,45 @@
             <div>
                 <h2 class="shop-heading">Shop Products</h2>
                 <div v-if="showProduct" class="flex-container" id="products">
+
+                    <div v-if="showProduct">
+                        <!-- Sort By Section -->
+                        <div>
+                            <p>Sort by:</p>
+                            <label>
+                                <input type="radio" v-model="sortBy" value="title" name="sortByGroup"> Subject
+                            </label>
+                            <label>
+                                <input type="radio" v-model="sortBy" value="location" name="sortByGroup"> Location
+                            </label>
+                            <label>
+                                <input type="radio" v-model="sortBy" value="price" name="sortByGroup"> Price
+                            </label>
+                            <label>
+                                <input type="radio" v-model="sortBy" value="availableInventory" name="sortByGroup"> Availability
+                            </label>
+                        </div>
+
+                        <!-- Sort Order Section -->
+                        <div>
+                            <p>Order:</p>
+                            <label>
+                                <input type="radio" v-model="sortOrder" value="asc" name="sortOrderGroup"> Ascending
+                            </label>
+                            <label>
+                                <input type="radio" v-model="sortOrder" value="desc" name="sortOrderGroup"> Descending
+                            </label>
+                        </div>
+                    </div>
+
+
                     <div v-for="product in sortedProducts" :key="product.id" class="flex-item product-box">
                         <img v-bind:src="product.image" height="200">
                         <h2 v-text="product.title" class="product-title"></h2>
                         <p>SKU: {{product.id}}</p>
                         <p v-html="product.description"></p>
-                        <p>Price: {{product.price}}</p>
+                        <p>Price: {{product.price}}$</p>
+                        <p>Location: {{product.location}}</p>
                         <p>Stock: {{product.availableInventory}}</p>
                         <button v-on:click="addToCart(product)" v-if="product.availableInventory > 5">
                             Add to Cart
@@ -230,6 +263,8 @@
                     sitename: 'Paw Care & Food',
                     showProduct: true,
                     products: products,
+                    sortBy: "title",
+                    sortOrder: "asc",
                     emirate: {
                             AD: "Abu Dhabi",
                             DXB: "Dubai",
@@ -271,7 +306,7 @@
                     cartItemCount: function() {
                         return this.cart.length || 0;
                     },
-                    sortedProducts() {
+                    sortedProducts_old() {
                         let  productArray = this.products.slice(0);
                         function compare (a,b) {
                             if (a.price > b.price)
@@ -281,6 +316,30 @@
                             return 0;
                         }
                         return productArray.sort(compare)
+                    },
+                    sortedProducts() {
+                        let productArray = this.products.slice(0);
+                        let direction = this.sortOrder === "asc" ? 1 : -1;
+
+                        return productArray.sort((a, b) => {
+                            let valueA = a[this.sortBy];
+                            let valueB = b[this.sortBy];
+
+                            // Ignore letter case when sorting text.
+                            if (typeof valueA === "string")
+                                valueA = valueA.toLowerCase();
+
+                            if (typeof valueB === "string")
+                                valueB = valueB.toLowerCase();
+
+                            if (valueA > valueB)
+                                return direction;
+
+                            if (valueA < valueB)
+                                return -direction;
+
+                            return 0;
+                        });
                     }
                 },
             });

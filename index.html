@@ -175,9 +175,49 @@
                     </div>
                 </div>
                 <div v-else>
-                    <h2>Checkout Page</h2>
-                    <h3>Added Product IDs</h3>
-                    <p>Product ID: {{cart}}</p>
+                    <div class="cart-summary">
+                        <h2>Your lessons</h2>
+
+                        <p v-if="cart.length === 0">Your cart is empty.</p>
+
+                        <div class="flex-container cart-grid">
+                            <div v-for="product in cartProducts"
+                                :key="product.id"
+                                class="flex-item product-box cart-card">
+
+                                <img :src="product.image"
+                                    :alt="product.title"
+                                    class="product-image">
+
+                                <h3 class="product-title">{{product.title}}</h3>
+
+                                <div class="cart-body">
+                                    <div class="cart-details">
+                                        <small>Product ID: {{product.id}}</small>
+                                        <p>Category: {{product.category}}</p>
+                                        <p>Tutor: {{product.teacher}}</p>
+                                        <p>Location: {{product.location}}</p>
+                                    </div>
+
+                                    <div class="cart-prices">
+                                        <p>Price: ${{product.price.toFixed(2)}} each</p>
+                                        <p>Quantity: {{getQuantity(product)}}</p>
+                                        <p>
+                                            Subtotal:
+                                            <strong>
+                                                ${{(product.price * getQuantity(product)).toFixed(2)}}
+                                            </strong>
+                                        </p>
+
+                                        <button type="button"
+                                                @click="removeFromCart(product)">
+                                            Remove one slot
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div>
                     <h2>Checkout</h2>
                     <p>
@@ -301,6 +341,18 @@
                         // return this.product.availableInventory > this.cartItemCount;
                         return product.availableInventory > 0;
                     },
+                    getQuantity(product) {
+                        return this.cart.filter(id => id === product.id).length;
+                    },
+
+                    removeFromCart(product) {
+                        let index = this.cart.indexOf(product.id);
+
+                        if (index !== -1) {
+                            this.cart.splice(index, 1);
+                            product.availableInventory += 1;
+                        }
+                    },
 
                 },
                 computed:{
@@ -341,7 +393,12 @@
 
                             return 0;
                         });
-                    }
+                    },
+                    cartProducts() {
+                        return this.products.filter(product =>
+                            this.cart.includes(product.id)
+                        );
+                    },
                 },
             });
         </script>

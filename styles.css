@@ -563,3 +563,9 @@ button:active, .btns:active {
         padding: 20px;
     }
 }
+.place-order:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}

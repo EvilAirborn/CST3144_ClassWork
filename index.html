@@ -109,11 +109,11 @@
                 <h2 class="shop-heading">Shop Products</h2>
                 <div v-if="showProduct" class="flex-container" id="products">
 
-                    <div v-if="showProduct">
+                    <div v-if="showProduct" class="sort-controls">
                         <!-- For searching: Use backend (DB: Pending for later works)..
                          For Sorting is from front end. -->
                         <!-- Sort By Section -->
-                        <div>
+                        <div class="sort-group">
                             <p>Sort by:</p>
                             <label>
                                 <input type="radio" v-model="sortBy" value="title" name="sortByGroup"> Subject
@@ -130,7 +130,7 @@
                         </div>
 
                         <!-- Sort Order Section -->
-                        <div>
+                        <div class="sort-group">
                             <p>Order:</p>
                             <label>
                                 <input type="radio" v-model="sortOrder" value="asc" name="sortOrderGroup"> Ascending
@@ -145,13 +145,13 @@
                     <div v-for="product in sortedProducts" :key="product.id" class="flex-item product-box">
                         <img v-bind:src="product.image" class="product-image">
                         <h2 v-text="product.title" class="product-title"></h2>
-                        <p>SKU: {{product.id}}</p>
-                        <p>Category: {{product.category}}</p>
-                        <p v-html="product.description"></p>
-                        <p>Price: {{product.price}}$</p>
+                        <p v-html="product.description">Course Description:</p>
+                        <p>Course ID: {{product.id}}</p>
+                        <p>Course Category: {{product.category}}</p>
+                        <p>Course Tutor: {{product.teacher}}</p>
                         <p>Location: {{product.location}}</p>
-                        <p>Tutor: {{product.teacher}}</p>
-                        <p>Stock: {{product.availableInventory}}</p>
+                        <p>Available Slots: {{product.availableInventory}}</p>
+                        <p>Price: {{product.price}}$</p>
                         <button v-on:click="addToCart(product)" v-if="product.availableInventory > 5">
                             Add to Cart
                         </button>
@@ -162,7 +162,7 @@
                             <button v-on:click="addToCart(product)" v-if="canAddToCart(product)">
                                 Add to Cart
                             </button>
-                            <span>Limited Stock</span>
+                            <span> Limited Stock</span>
                         </div>
                         <h3 v-else>
                             Out Of Stock

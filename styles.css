@@ -318,7 +318,14 @@ body {
         padding: 30px 25px;
     }
 }
-
+.shop-heading {
+    flex-basis: 100%;
+    margin: 20 0 8px;
+    text-align: center;
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 800;
+    color: #142f21;
+}
 /* From Figma Work
  https://www.figma.com/design/S6W2jkrDJuQkF3TfQtLmpR/Franchise---Ecommerce-App--Community-?node-id=1-786&m=dev */
 button, .btns {

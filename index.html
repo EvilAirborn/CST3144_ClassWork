@@ -109,6 +109,7 @@
             </section>
 
             <div>
+                <h2 class="shop-heading">Shop Products</h2>
                 <div v-if="showProduct" class="flex-container" id="products">
                     <div v-for="product in sortedProducts" :key="product.id" class="flex-item product-box">
                         <img v-bind:src="product.image" height="200">

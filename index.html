@@ -221,20 +221,25 @@
                     <div>
                         <div class="checkout-form">
                             <h2>Checkout</h2>
+                            <p><small><span style="color: #c62828;">*</span> Required fields</small></p>
 
                             <div class="checkout-fields">
                                 <label>
-                                    First Name
+                                    <span>First Name <span style="color: #c62828;">*</span></span>
                                     <input v-model.trim="order.firstName">
                                 </label>
 
                                 <label>
-                                    Last Name
+                                    <span>Last Name <span style="color: #c62828;">*</span></span>
                                     <input v-model.trim="order.lastName">
                                 </label>
+                                <!-- Used text as input to avoid rejecting 0 at begining. But JS have number validation-->
                                 <label>
-                                    Phone Number
-                                    <input v-model="order.phone">
+                                    <span>Phone Number <span style="color: #c62828;">*</span></span>
+                                    <input type="text"
+                                        inputmode="numeric"
+                                        v-model="order.phone"
+                                        @input="onlyDigits">
                                 </label>
 
                                 <label>
@@ -289,7 +294,7 @@
                                 </label>
                             </div>
 
-                            <button type="button" class="place-order" @click="submitForm">Place Order</button>
+                            <button type="button" class="place-order" @click="submitForm" :disabled="!canCheckout">Place Order</button>
                         </div>
 
                         <h2>Order Information</h2>
@@ -302,7 +307,6 @@
                         <p>Zip: {{order.zip}}</p>
                         <p>Gift?: {{order.gift}}</p>
                         <p>Shipment To: {{order.method}}</p>
-                        <button v-on:click="submitForm">Place Order</button>
                     </div>  
                 </div>  
             </div>
@@ -363,7 +367,9 @@
                         this.showProduct = this.showProduct ? false : true;
                     },
                     submitForm() {
-                        alert('Order submitted!!!!!')
+                        if (!this.canCheckout) return;
+
+                        alert('Order submitted!!!!');
                     },
                     canAddToCart: function(product) {
                         // return this.product.availableInventory > this.cartItemCount;
@@ -380,6 +386,10 @@
                             this.cart.splice(index, 1);
                             product.availableInventory += 1;
                         }
+                    },
+                    onlyDigits(event) {
+                        this.order.phone = event.target.value.replace(/[^0-9]/g, "");
+                        event.target.value = this.order.phone;
                     },
 
                 },
@@ -426,6 +436,14 @@
                         return this.products.filter(product =>
                             this.cart.includes(product.id)
                         );
+                    },
+                    canCheckout() {
+                        let namePattern = /^[A-Za-z]+$/;
+                        let phonePattern = /^[0-9]+$/;
+
+                        return namePattern.test(this.order.firstName) &&
+                            namePattern.test(this.order.lastName) &&
+                            phonePattern.test(this.order.phone);
                     },
                 },
             });

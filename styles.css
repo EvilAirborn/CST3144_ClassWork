@@ -391,3 +391,45 @@ button:active, .btns:active {
     height: auto;
     margin: -20px -20px 0;
 }
+.sort-controls {
+    flex: 0 0 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 24px;
+    background: #f9fbf8;
+    border: 1px solid #dce5dc;
+    border-radius: 12px;
+}
+
+.sort-group p {
+    margin: 0 0 12px;
+    font-weight: 700;
+    color: #142f21;
+}
+
+.sort-group label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 8px 8px 0;
+    padding: 8px 12px;
+    background: white;
+    border: 1px solid #dce5dc;
+    border-radius: 8px;
+    color: #142f21;
+    cursor: pointer;
+}
+
+.sort-group input[type="radio"] {
+    margin: 0;
+    accent-color: #006051;
+}
+
+@media (max-width: 768px) {
+    .sort-controls {
+        flex-direction: column;
+    }
+}

@@ -1,1 +1,0 @@
-Week 3 class works are directly pushed to main coursework at root html and JS

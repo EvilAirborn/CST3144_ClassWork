@@ -142,7 +142,10 @@
                         </div>
                     </div>
 
-
+                    <div v-if="loadingProducts" class="text-center my-4" role="status">
+                        <span class="spinner-border text-primary" aria-hidden="true"></span>
+                        <span class="ms-2">Loading products...</span>
+                    </div>
                     <div v-for="product in sortedProducts" :key="product.id" class="flex-item product-box">
                         <img v-bind:src="product.image" class="product-image">
                         <h2 v-text="product.title" class="product-title"></h2>
@@ -335,6 +338,7 @@
                 data: {
                     sitename: 'skillspace',
                     showProduct: true,
+                    loadingProducts: true,
                     products: [],
                     productsError: "",
                     sortBy: "title",
@@ -457,6 +461,9 @@
                 .catch(error => {
                     console.error("Failed to fetch products:", error);
                     webstore.productsError = "Unable to load products. Check that the product API is running, then refresh.";
+                })
+                .finally(() => {
+                    webstore.loadingProducts = false;
                 });
         </script>
     </body>
